@@ -13,7 +13,8 @@ import firebase_admin
 from firebase_admin import credentials, messaging
 
 from database import get_db
-from models import User, Meal, DietPlan, Challenge, ChallengeParticipant, Progress
+from models import User, Meal, DietPlan, Challenge, ChallengeParticipant, Progress, DietPlanResponse
+
 
 # Load environment variables
 load_dotenv()
@@ -220,7 +221,7 @@ async def update_device_token(
     return {"message": "Device token updated successfully"}
 
 # Diet plan endpoints
-@app.post("/diet-plans", response_model=DietPlan)
+@app.post("/diet-plans", response_model=DietPlanResponse)
 async def create_diet_plan(
     diet_plan: DietPlanCreate,
     current_user: User = Depends(get_current_user),
@@ -242,7 +243,7 @@ async def create_diet_plan(
     db.refresh(db_diet_plan)
     return db_diet_plan
 
-@app.get("/diet-plans/me", response_model=DietPlan)
+@app.get("/diet-plans/me", response_model=DietPlanResponse)
 async def get_my_diet_plan(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
