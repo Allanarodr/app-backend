@@ -121,3 +121,16 @@ class DietPlanResponse(BaseModel):
 
     class Config:
         orm_mode = True
+        
+    class ChallengeResponse(BaseModel):
+    id: int
+    name: str
+    description: str
+    start_date: datetime
+    end_date: datetime
+    target_weight_loss: float
+    created_by: int
+    image_url: Optional[str] = None
+
+    class Config:
+        from_attributes = True  # <-- this replaces orm_mode in Pydantic v2
