@@ -97,8 +97,15 @@ class ChallengeParticipant(Base):
 
 class Progress(Base):
     __tablename__ = "progress"
-    ...
-    user = relationship("User", back_populates="progress_records") 
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    weight = Column(Float)
+    date = Column(DateTime, default=datetime.utcnow)
+    notes = Column(String, nullable=True)
+    image_url = Column(String, nullable=True)
+
+    user = relationship("User", back_populates="progress_records")
+
 
 
 # ✅ AGORA começa o modelo Pydantic FORA da classe Progress:
