@@ -97,12 +97,20 @@ class ChallengeParticipant(Base):
 
 class Progress(Base):
     __tablename__ = "progress"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
-    weight = Column(Float)
-    date = Column(DateTime, default=datetime.utcnow)
-    notes = Column(String, nullable=True)
-    image_url = Column(String, nullable=True)
-
+    ...
     user = relationship("User", back_populates="progress_records") 
+
+
+# ✅ AGORA começa o modelo Pydantic FORA da classe Progress:
+
+from pydantic import BaseModel
+from datetime import datetime
+
+class DietPlanResponse(BaseModel):
+    id: int
+    user_id: int
+    total_calories: int
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
