@@ -254,7 +254,7 @@ async def get_my_diet_plan(
     return diet_plan
 
 # Challenge endpoints
-@app.post("/challenges", response_model=Challenge)
+@app.post("/challenges", response_model=ChallengeResponse)
 async def create_challenge(
     challenge: ChallengeCreate,
     current_user: User = Depends(get_current_user),
@@ -269,7 +269,7 @@ async def create_challenge(
     db.refresh(db_challenge)
     return db_challenge
 
-@app.get("/challenges", response_model=List[Challenge])
+@app.get("/challenges", response_model=List[ChallengeResponse])
 async def get_challenges(db: Session = Depends(get_db)):
     return db.query(Challenge).all()
 
