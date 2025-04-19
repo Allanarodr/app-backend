@@ -19,8 +19,8 @@ from models import User, Meal, DietPlan, Challenge, ChallengeParticipant, Progre
 load_dotenv()
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate(os.getenv("FIREBASE_CREDENTIALS_PATH"))
-firebase_admin.initialize_app(cred)
+#cred = credentials.Certificate(os.getenv("FIREBASE_CREDENTIALS_PATH"))
+#firebase_admin.initialize_app(cred)
 
 app = FastAPI(
     title="Weight Loss App Backend",
