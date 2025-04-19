@@ -122,7 +122,7 @@ class DietPlanResponse(BaseModel):
     class Config:
         orm_mode = True
         
-    class ChallengeResponse(BaseModel):
+   class ChallengeResponse(BaseModel):
     id: int
     name: str
     description: str
